@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AppAgile Kostenrechner</title>
+<script src="/static/jquery-3.3.1.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/style.css" media="screen" />
+
+  </head>
+  <body>
+  <div class="header">
+<h1><strong>AppAgile Kostenkalkulator Telekom IT</strong></h1>
+</div>
+
+<div class="sidenav">
+<br> <br> <br> <br> <br> <br>
+<center>
+<button class="button"  onclick="window.location.reload()">
+Refresh
+</button>
+<br> <br> <br>
+<button class="button" onclick="sideFunction1">
+Manual
+</button>
+<br> <br> <br>
+<button class="button" onclick="sideFunction2">Order</button>
+<br>
+</center>
+</div>
+
+<!-- Page content -->
+<div class="main">
+
+<br><br>
+<input type="text" id="1" disabled="disabled" value ="vCPU" size="3" />
+<input type="text" id="2" disabled="disabled" value ="RAM" size="3" />
+<input type="text" id="3" disabled="disabled" value ="Use/Hour Day" size="9" />
+<input type="text" id="4" disabled="disabled" value ="Hours needed" size="9" />
+<input type="text" id="5" disabled="disabled" value ="Use/Day Month" size="10" />
+<button type="button" disabled>=</button>
+<input type="text" id="6" disabled="disabled" value ="PCU Value" size="8"/>
+<input type="text" id="7" disabled="disabled" value ="PCU/h Day" size="8"/>
+<input type="text" id="8" disabled="disabled" value ="PCU/h Month" size="8"/>
+<p style="display:inline" id="1">PCU Costs</p>
+<br><br>
+<input type="text" id="vCPU" disabled="disabled" value ="1" size="3" />
+<input type="text" id="Ram" disabled="disabled" value ="8" size="3" />
+<input type="text" id="Usehourday" disabled="disabled" value ="24" size="9" />
+<input type="text" id="percenthour" disabled="disabled" value ="100" size="9" />
+<input type="text" id="usedaymonth" disabled="disabled" value ="31" size="10" />
+<button type="button" disabled>=</button>
+<input type="text" id="PCUvalue" disabled="disabled" value ="8" size="8"/>
+<input type="text" id="PCUhourday" disabled="disabled" value ="192" size="8"/>
+<input type="text" id="PCUhourMonth" disabled="disabled" value ="5952" size="8"/>
+<p style="display:inline" id="costs">892.80€</p>
+<br><br>
+
+
+
+
+
+<input type="text" id="vCPU1" size="3" />
+<input type="text" id="Ram1" size="3" />
+<input type="text" id="Usehourday1" size="9" />
+<input type="text" id="percenthour1" size="9" />
+<input type="text" id="usedaymonth1" size="10" />
+<button onclick="myFunction1()">=</button>
+<input type="text" id="PCUvalue1" disabled="disabled" size="8"/>
+<input type="text" id="PCUhourday1" disabled="disabled" size="8"/>
+<input type="text" id="PCUhourMonth1" disabled="disabled" size="8"/>
+<p style="display:inline" id="costs1"></p>
+
+<br><br>
+<input type="text" id="vCPU2" size="3" />
+<input type="text" id="Ram2" size="3" />
+<input type="text" id="Usehourday2" size="9" />
+<input type="text" id="percenthour2" size="9" />
+<input type="text" id="usedaymonth2" size="10" />
+<button onclick="myFunction2()">=</button>
+<input type="text" id="PCUvalue2" disabled="disabled" size="8" />
+<input type="text" id="PCUhourday2" disabled="disabled" size="8"/>
+<input type="text" id="PCUhourMonth2" disabled="disabled" size="8"/>
+<p style="display:inline" id="costs2"></p>
+<br><br>
+<input type="text" id="vCPU3" size="3" />
+<input type="text" id="Ram3" size="3" />
+<input type="text" id="Usehourday3" size="9" />
+<input type="text" id="percenthour3" size="9" />
+<input type="text" id="usedaymonth3" size="10" />
+<button onclick="myFunction3()">=</button>
+<input type="text" id="PCUvalue3" disabled="disabled" size="8"/>
+<input type="text" id="PCUhourday3" disabled="disabled" size="8"/>
+<input type="text" id="PCUhourMonth3" disabled="disabled" /size="8">
+<p style="display:inline" id="costs3"></p>
+<br><br>
+<input type="text" id="vCPU4" size="3" />
+<input type="text" id="Ram4" size="3" />
+<input type="text" id="Usehourday4" size="9" />
+<input type="text" id="percenthour4" size="9" />
+<input type="text" id="usedaymonth4" size="10" />
+<button onclick="myFunction4()">=</button>
+<input type="text" id="PCUvalue4" disabled="disabled" size="8"/>
+<input type="text" id="PCUhourday4" disabled="disabled" size="8"/>
+<input type="text" id="PCUhourMonth4" disabled="disabled" size="8"/>
+<p style="display:inline" id="costs4"></p>
+<br><br>
+</div>
+<div class="manu" id="manual">
+<p> Testtext <p>
+<script>
+function myFunction1(){
+let a = document.getElementById('vCPU1').value;
+let b = document.getElementById('Ram1').value;
+let c = document.getElementById('Usehourday1').value;
+let d = document.getElementById('percenthour1').value;
+let e = document.getElementById('usedaymonth1').value;
+let f = document.getElementById('PCUvalue1');
+let g = document.getElementById('PCUhourday1');
+let h = document.getElementById('PCUhourMonth1');
+let i;
+
+
+f.value = parseFloat(b);
+g.value = parseFloat(c) * parseFloat(f.value) / 100 * parseFloat(d);
+h.value = parseFloat(g.value) * parseFloat(e);
+i = parseFloat(h.value) * 0.15;
+var n = i.toFixed(2);
+var n = n +"€";
+var elem = document.getElementById('costs1');
+elem.innerHTML = n;
+
+
+
+
+}
+
+
+function myFunction2(){
+let a = document.getElementById('vCPU2').value;
+let b = document.getElementById('Ram2').value;
+let c = document.getElementById('Usehourday2').value;
+let d = document.getElementById('percenthour2').value;
+let e = document.getElementById('usedaymonth2').value;
+let f = document.getElementById('PCUvalue2');
+let g = document.getElementById('PCUhourday2');
+let h = document.getElementById('PCUhourMonth2');
+let i;
+
+
+f.value = parseFloat(b);
+g.value = parseFloat(c) * parseFloat(f.value) / 100 * parseFloat(d);
+h.value = parseFloat(g.value) * parseFloat(e);
+i = parseFloat(h.value) * 0.15;
+var n = i.toFixed(2);
+var n = n +"€";
+var elem = document.getElementById('costs2');
+elem.innerHTML = n;
+}
+function myFunction3(){
+let a = document.getElementById('vCPU3').value;
+let b = document.getElementById('Ram3').value;
+let c = document.getElementById('Usehourday3').value;
+let d = document.getElementById('percenthour3').value;
+let e = document.getElementById('usedaymonth3').value;
+let f = document.getElementById('PCUvalue3');
+let g = document.getElementById('PCUhourday3');
+let h = document.getElementById('PCUhourMonth3');
+let i;
+
+
+f.value = parseFloat(b);
+g.value = parseFloat(c) * parseFloat(f.value) / 100 * parseFloat(d);
+h.value = parseFloat(g.value) * parseFloat(e);
+i = parseFloat(h.value) * 0.15;
+var n = i.toFixed(2);
+var n = n +"€";
+var elem = document.getElementById('costs3');
+elem.innerHTML = n;
+}
+function myFunction4(){
+let a = document.getElementById('vCPU4').value;
+let b = document.getElementById('Ram4').value;
+let c = document.getElementById('Usehourday4').value;
+let d = document.getElementById('percenthour4').value;
+let e = document.getElementById('usedaymonth4').value;
+let f = document.getElementById('PCUvalue4');
+let g = document.getElementById('PCUhourday4');
+let h = document.getElementById('PCUhourMonth4');
+let i;
+
+
+f.value = parseFloat(b);
+g.value = parseFloat(c) * parseFloat(f.value) / 100 * parseFloat(d);
+h.value = parseFloat(g.value) * parseFloat(e);
+i = parseFloat(h.value) * 0.15;
+var n = i.toFixed(2);
+var n = n +"€";
+var elem = document.getElementById('costs4');
+elem.innerHTML = n;
+}
+function sideFunction1(){
+document.getElementById("manual").style.display = "block";
+
+}
+</script>
+  </body>
+</html>
